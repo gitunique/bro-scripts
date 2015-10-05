@@ -18,7 +18,7 @@ function submit_cuckoo(f: string)
     {
     local command = Exec::Command($cmd=fmt("%s %s",tool,f));
 
-    when ( local result = Exec::run(command))
+    when ( local result = Exec::run(command) )
    	    {
    	    print fmt("Cuckoo submission script complete");
    	    }
@@ -41,6 +41,6 @@ event file_sniff(f: fa_file, meta: fa_metadata)
 
 event file_state_remove( f: fa_file )
     {
-    if (f$info?$extracted)
+    if ( f$info?$extracted )
         submit_cuckoo(f$info$extracted);
     }
