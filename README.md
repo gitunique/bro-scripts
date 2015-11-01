@@ -10,4 +10,5 @@ Script to extract and evaluate file metadata - for example to see if a recent co
 ## statsd_test
 Configuration to make use of JustinAzoff's bro-statsd-plugin
 
-
+## share/bro/policy/frameworks/intel
+Customisations to the default intel scripts
