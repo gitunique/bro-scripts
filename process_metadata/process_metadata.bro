@@ -8,14 +8,15 @@
 #
 
 event pe_file_header(f: fa_file, h: PE::FileHeader)
-{
-        local delta_time: interval  = 30 days ;
-        if ( f$pe?$compile_ts ){
-                if ( network_time() - f$pe$compile_ts < delta_time ) {
-                NOTICE([$note=RecentCompileTime,
-                        $msg=fmt("Recently compiled executable detected - file id: %s, compile time %s.",f$id,strftime("%Y-%m-%d %H:%M:%S",f$pe$compile_ts))]);
-
-                }
+    {
+    local delta_time: interval  = 30 days ;
+    if ( f$pe?$compile_ts )
+        {
+        if ( network_time() - f$pe$compile_ts < delta_time )
+            {
+            NOTICE([$note=RecentCompileTime,
+                    $msg=fmt("Recently compiled executable detected - file id: %s, compile time %s.",f$id,strftime("%Y-%m-%d %H:%M:%S",f$pe$compile_ts))]);
+            }
         }
-}
+    }
 

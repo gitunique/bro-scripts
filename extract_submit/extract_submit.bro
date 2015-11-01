@@ -2,7 +2,7 @@
 # This script will undertale additional processing of files extracted
 # by the ANALYZER_EXTRACT module.
 #
-# Requires that the global ext_map contained in the 
+# Requires that the global ext_map contained in the
 # bro/share/bro/file-extraction/extract.bro
 # file includes relevant mime_types
 #
@@ -52,11 +52,11 @@ const extraction_types: set[string] = {
 
 export
 {
-        const tool = fmt("/usr/local/bin/cuckoo-submit.sh");
-	redef enum Notice::Type += {
-	    ## Generated if file is extracted and analysed
-	    File::Cuckoo_Submission
-	};
+    const tool = fmt("/usr/local/bin/cuckoo-submit.sh");
+    redef enum Notice::Type += {
+        ## Generated if file is extracted and analysed
+        File::Cuckoo_Submission
+    };
 }
 
 function submit_cuckoo(f: fa_file): int
@@ -73,10 +73,10 @@ event file_sniff(f: fa_file, meta: fa_metadata)
 {
     if ( meta?$mime_type && meta$mime_type in extraction_types )
     { 
-	local ext = "";
+    local ext = "";
         ext = my_ext_map[meta$mime_type];
-    	local fname = fmt("%s-%s.%s", f$source, f$id, ext);
-    	Files::add_analyzer(f, Files::ANALYZER_EXTRACT, [$extract_filename=fname]); 
+        local fname = fmt("%s-%s.%s", f$source, f$id, ext);
+        Files::add_analyzer(f, Files::ANALYZER_EXTRACT, [$extract_filename=fname]); 
      }
 }
 
